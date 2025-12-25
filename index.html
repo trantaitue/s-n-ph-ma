@@ -2,172 +2,178 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Gửi Em – Tình Yêu Của Anh ❤️</title>
+<title>Gửi người anh yêu ❤️</title>
 
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    height:100vh;
+    background:radial-gradient(circle at top,#ffd1dc,#ffe6f0,#ffd1dc);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Dancing Script',cursive;
 }
 
-body {
-    height: 100vh;
-    background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fbc2eb);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Dancing Script', cursive;
+/* FALL EFFECT */
+.fall{
+    position:fixed;
+    top:-30px;
+    z-index:1;
+    pointer-events:none;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);opacity:0}
 }
 
-/* TIM RƠI */
-.heart {
-    position: fixed;
-    top: -10px;
-    color: rgba(255, 0, 100, 0.7);
-    font-size: 20px;
-    animation: fall linear infinite;
+/* ENVELOPE */
+.envelope{
+    width:460px;
+    height:320px;
+    background:linear-gradient(135deg,#ff6f91,#ff9aa2);
+    border-radius:28px;
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+    z-index:10;
+    cursor:pointer;
 }
 
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
+/* FRONT */
+.front{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+    color:#fff;
+    font-weight:bold;
+    transition:1s;
 }
 
-/* PHONG THƯ */
-.envelope {
-    width: 420px;
-    height: 280px;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    position: relative;
-    cursor: pointer;
-    transition: transform 1s;
+/* CARD */
+.card{
+    position:absolute;
+    inset:22px;
+    background:#fff;
+    border-radius:20px;
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    opacity:0;
+    transform:scale(.9);
+    transition:1.2s;
 }
 
-.envelope:hover {
-    transform: scale(1.05);
+.card h1{
+    font-family:'Great Vibes',cursive;
+    font-size:42px;
+    color:#ff4d6d;
+    margin-bottom:12px;
 }
 
-.cover {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 34px;
-    color: white;
-    font-weight: bold;
-    z-index: 3;
-    animation: glow 2s infinite alternate;
+.card p{
+    font-size:20px;
+    color:#444;
+    line-height:1.7;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff; }
-    to { text-shadow: 0 0 25px #ffdde1; }
+.sign{
+    margin-top:14px;
+    font-size:24px;
+    color:#ff4d6d;
 }
 
-/* THIỆP */
-.card {
-    position: absolute;
-    inset: 20px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: 1.2s;
-}
-
-.card h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 38px;
-    color: #ff4d6d;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 20px;
-    color: #444;
-    line-height: 1.7;
-}
-
-.signature {
-    margin-top: 15px;
-    font-size: 22px;
-    color: #ff4d6d;
-}
-
-/* MỞ THIỆP */
-.opened .cover {
-    opacity: 0;
-}
-
-.opened .card {
-    opacity: 1;
-    transform: scale(1);
-}
+/* OPEN */
+.open .front{opacity:0}
+.open .card{opacity:1;transform:scale(1)}
 </style>
 </head>
 <body>
 
-<!-- PHONG THƯ -->
-<div class="envelope" onclick="openLove()">
-    <div class="cover">💌 Nhấn để mở 💌</div>
+<div class="envelope" onclick="openCard()">
+    <div class="front">💌 Nhấn để mở 💌</div>
     <div class="card">
         <h1>Gửi người anh yêu ❤️</h1>
-        <p>
-            Từ khoảnh khắc em xuất hiện,<br>
-            thế giới của anh trở nên dịu dàng hơn.<br>
-            Mỗi nụ cười của em là điều anh muốn bảo vệ suốt đời.
+
+        <p id="t1">
+            Từ khi em xuất hiện,<br>
+            thế giới của anh dịu dàng hơn.
         </p>
-        <p>
-            Dù có bao nhiêu thử thách phía trước,<br>
-            <b>là bạn hãy đừng bao giờ từ bỏ.</b>
+
+        <p id="t2">
+            Dù có bao nhiêu thử thách,<br>
+            <b> hãy đừng bao giờ rời bỏ anh nhé.</b>
         </p>
-        <div class="signature">
-            Mãi yêu em 💖
-        </div>
+
+        <div class="sign">Mãi yêu công chúa của anh 💖</div>
     </div>
 </div>
 
-<!-- NHẠC -->
 <audio id="music" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b9f4d7a1c.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b9f4d7a1c.mp3">
 </audio>
 
 <script>
-function openLove() {
-    document.querySelector('.envelope').classList.toggle('opened');
+function openCard(){
+    document.querySelector('.envelope').classList.toggle('open');
     document.getElementById('music').play();
+    typeHTML(document.getElementById("t1"),30,()=>{
+        typeHTML(document.getElementById("t2"),30);
+    });
 }
 
-// TẠO TIM RƠI
-setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
-    document.body.appendChild(heart);
+/* ===== TYPE HIỂU HTML – FIX TRIỆT ĐỂ ===== */
+function typeHTML(el,speed,cb){
+    const nodes=[...el.childNodes];
+    el.innerHTML="";
+    let i=0;
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}, 200);
+    function next(){
+        if(i>=nodes.length){
+            if(cb)cb();
+            return;
+        }
+        const n=nodes[i++];
+        if(n.nodeType===3){ // text
+            let txt=n.textContent;
+            let j=0;
+            const span=document.createElement("span");
+            el.appendChild(span);
+            const run=setInterval(()=>{
+                span.textContent+=txt[j++];
+                if(j>=txt.length){
+                    clearInterval(run);
+                    next();
+                }
+            },speed);
+        }else{
+            el.appendChild(n.cloneNode(true));
+            next();
+        }
+    }
+    next();
+}
+
+/* HEART + FLOWER */
+setInterval(()=>{
+    const f=document.createElement("div");
+    f.className="fall";
+    f.innerHTML=Math.random()>0.5?"❤️":"🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.fontSize=14+Math.random()*26+"px";
+    f.style.animationDuration=4+Math.random()*4+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),8000);
+},150);
 </script>
 
 </body>
