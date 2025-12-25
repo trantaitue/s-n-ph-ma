@@ -1,123 +1,173 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Thiệp Gửi Em ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Gửi Em – Tình Yêu Của Anh ❤️</title>
 
-        .card {
-            width: 350px;
-            height: 250px;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            transition: transform 0.6s;
-        }
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-        .card:hover {
-            transform: scale(1.03);
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .front {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff6f91, #ff9671);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            z-index: 2;
-        }
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fbc2eb);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Dancing Script', cursive;
+}
 
-        .heart {
-            font-size: 50px;
-            animation: beat 1s infinite;
-        }
+/* TIM RƠI */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: rgba(255, 0, 100, 0.7);
+    font-size: 20px;
+    animation: fall linear infinite;
+}
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
 
-        .inside {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            padding: 25px;
-            box-sizing: border-box;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1s;
-        }
+/* PHONG THƯ */
+.envelope {
+    width: 420px;
+    height: 280px;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: pointer;
+    transition: transform 1s;
+}
 
-        .inside h2 {
-            color: #ff4d6d;
-            margin-bottom: 10px;
-        }
+.envelope:hover {
+    transform: scale(1.05);
+}
 
-        .inside p {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.6;
-        }
+.cover {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    color: white;
+    font-weight: bold;
+    z-index: 3;
+    animation: glow 2s infinite alternate;
+}
 
-        .signature {
-            margin-top: 15px;
-            font-style: italic;
-            color: #555;
-        }
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 25px #ffdde1; }
+}
 
-        .opened .front {
-            opacity: 0;
-        }
+/* THIỆP */
+.card {
+    position: absolute;
+    inset: 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: 1.2s;
+}
 
-        .opened .inside {
-            opacity: 1;
-        }
-    </style>
+.card h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 20px;
+    color: #444;
+    line-height: 1.7;
+}
+
+.signature {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #ff4d6d;
+}
+
+/* MỞ THIỆP */
+.opened .cover {
+    opacity: 0;
+}
+
+.opened .card {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
 </head>
 <body>
 
-<div class="card" onclick="openCard()">
-    <div class="front">
-        Mở ra nè 💌 <span class="heart">❤️</span>
-    </div>
-    <div class="inside">
-        <h2>Gửi người anh yêu 💖</h2>
+<!-- PHONG THƯ -->
+<div class="envelope" onclick="openLove()">
+    <div class="cover">💌 Nhấn để mở 💌</div>
+    <div class="card">
+        <h1>Gửi người anh yêu ❤️</h1>
         <p>
-            Cảm ơn em vì đã đến bên anh,  
-            mang theo nụ cười, niềm vui  
-            và cả những ngày bình yên nhất.
+            Từ khoảnh khắc em xuất hiện,<br>
+            thế giới của anh trở nên dịu dàng hơn.<br>
+            Mỗi nụ cười của em là điều anh muốn bảo vệ suốt đời.
         </p>
         <p>
-            Dù có chuyện gì xảy ra,  
+            Dù có bao nhiêu thử thách phía trước,<br>
             <b>là bạn hãy đừng bao giờ từ bỏ.</b>
         </p>
         <div class="signature">
-            Yêu em rất nhiều ❤️
+            Mãi yêu em 💖
         </div>
     </div>
 </div>
 
+<!-- NHẠC -->
+<audio id="music" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b9f4d7a1c.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    function openCard() {
-        document.querySelector('.card').classList.toggle('opened');
-    }
+function openLove() {
+    document.querySelector('.envelope').classList.toggle('opened');
+    document.getElementById('music').play();
+}
+
+// TẠO TIM RƠI
+setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 200);
 </script>
 
 </body>
